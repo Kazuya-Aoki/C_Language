@@ -1,2 +1,2 @@
 # C_Language
- Normal any C sources place. NOT fool!!
+## C言語の真面目なソースや実行ファイルを載せておく場所
