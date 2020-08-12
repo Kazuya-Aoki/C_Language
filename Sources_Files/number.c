@@ -2,16 +2,19 @@
 
 int fct; //機能を表す数字を格納する変数
 int cnt, idt, in_num; //cnt=配列の要素数、idt=for文で使う'i'の代わり、in_num=それぞれの要素
+char str[50];
+
 void num_max_min(void); //最大値、最小値を表示するメソッド
 void num_sum(void); //入力値x1からx2までの総和
+void file_action(void); //ファイルの読み書きをするメソッド
 
 
 int main(void){
-    printf("機能一覧\n1:最大値、最小値の表示 2:2つの値x1～x2までの和 0:終了\n");
+    printf("機能一覧\n1:最大値、最小値の表示 2:2つの値x1～x2までの和 3:テキストファイルの読み書き 0:終了\n");
     while(1){
         printf("使用する機能の値を入力してください:");
         scanf("%d", &fct);
-        if(fct < 0 || fct > 2){
+        if(fct < 0 || fct > 3){
             printf("値が不適切です。入力し直してください。\n");
             continue; //ループ処理の先頭まで戻る
         }
@@ -21,6 +24,10 @@ int main(void){
         }
         else if(fct == 2){
             num_sum();
+            printf("---------------------------------------------\n");
+        }
+        else if(fct == 3){
+            file_action();
             printf("---------------------------------------------\n");
         }
         else if(fct == 0){
@@ -79,4 +86,18 @@ void num_sum(void){
     sum = (min + max)*(max - min + 1)/2; //最小値～最大値までの総和を計算
 
     printf("%d～%dまでの合計は%dです。\n", min, max, sum);
+}
+
+
+void file_action(void){
+    FILE *file;
+    file = fopen("sample_text.txt","w");
+    fprintf(file, "Hello,AnotherWorld...");
+    fclose(file);
+
+    file = fopen("sample_text.txt", "r");
+    fscanf(file, "%s", str);
+    fclose(file);
+
+    printf("%s\n", str);
 }
